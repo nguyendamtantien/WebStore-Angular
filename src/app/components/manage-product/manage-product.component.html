@@ -1,0 +1,54 @@
+<h2 class="text-center mt-5 mb-3">Manage For Admin</h2>
+<div class="d-flex justify-content-between">
+    <mat-form-field appearance="outline">
+        <mat-label>Select filter ({{dataSource?.length}})</mat-label>
+        <mat-select [(ngModel)]="filter" (ngModelChange)="changeFilter($event)">
+            <mat-option value="all">All Product</mat-option>
+            <mat-option value="available">Available</mat-option>
+            <mat-option value="deleted">Deleted</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Search Product here</mat-label>
+        <input matInput placeholder="Ex: Iphone" [(ngModel)]="searchString" (ngModelChange)="searchProduct($event)">
+        <button mat-button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''; searchProduct('')">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<ng-template [ngIf]="listProduct"></ng-template>
+<div class="table-responsive">
+    <table matSort (matSortChange)="sortData($event)" class="table">
+        <tr>
+            <th class="align-middle" mat-sort-header="id"> No. </th>
+            <th class="align-middle"> Image </th>
+            <th class="align-middle" mat-sort-header="title">Title</th>
+            <th class="align-middle" mat-sort-header="price">Price</th>
+            <th class="align-middle" mat-sort-header="rate">Rate</th>
+            <th class="align-middle" mat-sort-header="quantity">Quantity</th>
+            <th class="align-middle text-center">Action</th>
+        </tr>
+        <tr *ngFor="let item of dataSource; index as indexOfList">
+            <td class="align-middle">{{indexOfList + 1}}</td>
+            <td class="align-middle">
+                <a routerLink='/detail/{{item.id}}'>
+                    <img src="{{item.imgSource}}" style="height: 150px; width: auto" alt="" onerror="this.onerror=null;this.src='https://i.imgur.com/QJzMcF1.png'">
+                </a>
+            </td>
+            <td class="align-middle">{{item.title}}</td>
+            <td class="align-middle">{{item.price | number:'1.2-2'}}₫</td>
+            <td class="align-middle">{{item.rate | number:'1.1-2'}}</td>
+            <td class="align-middle">{{item.quantity | number:'1.0-2'}}</td>
+            <td class="align-middle text-center">
+                <a mat-mini-fab  matTooltip="Edit" class="mr-1" color="accent" routerLink="/dashboard/editproduct/{{item.id}}">
+                    <mat-icon class="">edit</mat-icon>
+                    <span></span>
+                </a>
+                <a mat-mini-fab matTooltip="Delete" class="mr-1" color="warn" (click)="delete_Click(item.id)">
+                    <mat-icon class="">delete</mat-icon>
+                    <span></span>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

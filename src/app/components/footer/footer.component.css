@@ -1,0 +1,22 @@
+footer {
+    background: linear-gradient(to right, #424242, #a0a0a0);
+    color: #000;
+}
+
+.list-inline-item a i {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+#button-addon1 {
+    color: #424242;
+    background-color: #fff;
+}
+
+.list-footer li a:hover {
+    text-decoration: underline;
+}
+img{
+    width: 20%;
+    border-radius: 60%;
+}

@@ -1,0 +1,106 @@
+<h2 class="text-center my-5">Edit product</h2>
+<div class="d-flex justify-content-between">
+    <mat-form-field appearance="outline">
+        <mat-label>Select product to edit</mat-label>
+        <mat-select [(ngModel)]="chooseProduct" (ngModelChange)="changeChooseProduct($event)">
+            <mat-option *ngFor="let item of listProduct" value="{{item.id}}">{{item.title}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<ng-template [ngIf]="!loading" [ngIfElse]="loadingtemplate">
+    <form #FormEditProduct="ngForm" class="example-form row" *ngIf="isChooseProduct">
+        <mat-form-field class="col-md-6 my-2" appearance="outline" hidden="true">
+            <mat-label>Id</mat-label>
+            <input type="number" matInput required placeholder="Ex: 1" [(ngModel)]="product.id" #id="ngModel" name="id" autocomplete="off">
+            <mat-icon matSuffix>title</mat-icon>
+            <mat-error *ngIf="desc.errors?.required">
+                Id is <b>required</b>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input type="text" matInput required placeholder="Ex: Iphone13" [(ngModel)]="product.title" #title="ngModel" name="title" autocomplete="off">
+            <mat-icon matSuffix>title</mat-icon>
+            <mat-error *ngIf="desc.errors?.required">
+                Title is <b>required</b>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea type="text" matInput required placeholder="Ex: very good" [(ngModel)]="product.description" #desc="ngModel" name="desc" autocomplete="off"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-error *ngIf="desc.errors?.required">
+                Description is <b>required</b>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Price</mat-label>
+            <input type="number" min="0" matInput required placeholder="Ex: 500.000" [(ngModel)]="product.price" #price="ngModel" name="price" autocomplete="off">
+            <mat-icon matSuffix>₫</mat-icon>
+            <mat-error *ngIf="price.errors?.required">
+                Price is <b>required</b>
+            </mat-error>
+            <mat-error *ngIf="rate.errors?.min">
+                Price must be greater than 0.
+            </mat-error>
+            <mat-hint>Price is a number greater than 0.</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Rate</mat-label>
+            <input type="number" min="1" max="5" matInput required placeholder="Ex: 4.5" [(ngModel)]="product.rate" #rate="ngModel" name="rate" autocomplete="off">
+            <mat-icon matSuffix>grade</mat-icon>
+            <mat-error *ngIf="rate.errors?.required">
+                Rate is <b>required</b>
+            </mat-error>
+            <mat-error *ngIf="rate.errors?.min">
+                Rate must be greater than 1.
+            </mat-error>
+            <mat-error *ngIf="rate.errors?.max">
+                Rate must be less than 5.
+            </mat-error>
+            <mat-hint>Rate is be a number between 1 and 5.</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select matNativeControl required [(ngModel)]="product.category" #category="ngModel" name="category" autocomplete="off">
+                <mat-option *ngFor="let category of categorys" [value]="category.value">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+            <!-- <input type="text" min="0" matInput required placeholder="Ex: 5.00" [(ngModel)]="product.Category" #category="ngModel" name="category" autocomplete="off"> -->
+        </mat-form-field>
+        <mat-form-field class="col-md-6 my-2" appearance="outline">
+            <mat-label>Quantity</mat-label>
+            <input type="number" min="0" matInput required placeholder="Ex: 123" [(ngModel)]="product.quantity" #quantity="ngModel" name="quantity" autocomplete="off">
+            <mat-icon matSuffix>layers-triple</mat-icon>
+            <mat-error *ngIf="price.errors?.required">
+                Quantity is <b>required</b>
+            </mat-error>
+            <mat-error *ngIf="rate.errors?.min">
+                Quantity must be greater than 0.
+            </mat-error>
+            <mat-hint>Quantity is a number greater than 0.</mat-hint>
+        </mat-form-field>
+        <mat-form-field class="col-12 my-2" appearance="outline">
+            <mat-label>Image URL Source</mat-label>
+            <input type="url" matInput required placeholder="Ex: http://example.com" [(ngModel)]="product.imgSource" #imgSource="ngModel" name="imgSource" autocomplete="off">
+            <mat-icon matSuffix>image</mat-icon>
+            <mat-error *ngIf="imgSource.errors?.required">
+                Image URL Source is <b>required</b>
+            </mat-error>
+            <mat-hint>Image URL Source is a URL string.</mat-hint>
+        </mat-form-field>
+        <img src="{{product.imgSource}}" *ngIf="product.imgSource" style="max-height: 200px; margin: 16px 16px;" onerror="this.onerror=null;this.src='https://i.imgur.com/QJzMcF1.png'" />
+        <button [disabled]="onSubmit" type="submit" class="d-block w-100 btn btn-lg mx-3 mt-2 btn-danger" (click)="updateProduct_Click()">Update product</button>
+    </form>
+</ng-template>
+<ng-template #loadingtemplate>
+    <div class="loading-spinner">
+        <mat-spinner color="warn" diameter=50></mat-spinner>
+    </div>
+</ng-template>
+
+<div class="loading-spinner my-3" *ngIf="onSubmit">
+    <mat-spinner color="warn" diameter=50></mat-spinner>
+</div>

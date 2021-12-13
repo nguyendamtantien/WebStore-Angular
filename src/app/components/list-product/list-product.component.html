@@ -1,0 +1,100 @@
+<app-carousel></app-carousel>
+<div class="d-flex justify-content-between row">
+    <mat-form-field appearance="outline" class="col-12 col-sm-6 mb-1">
+        <mat-label>What do you want to search?</mat-label>
+        <input matInput placeholder="Ex: Iphone" [(ngModel)]="searchString" (ngModelChange)="searchProduct($event)">
+        <button mat-button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-6 col-md-3">
+        <mat-label>Sort by </mat-label>
+        <mat-select [(ngModel)]="sortby" (ngModelChange)="changeSort($event)">
+            <mat-option value="increase">Price: Low to High</mat-option>
+            <mat-option value="decrease">Price: High to Low</mat-option>
+            <mat-option value="highrate">Rate: Low to High</mat-option>
+            <mat-option value="lowrate">Rate: High to Low</mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<div class="box-title">
+    <a href="" class="box-title__title">
+        <h2>Điện thoại nổi bật nhất</h2>
+    </a>
+    <div class="box-related-tag">
+        <div class="list-related-tag">
+            <label>Apple
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="Iphone">
+            </label>
+            <label>Samsung
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="Samsung">
+            </label>
+            <label>Nokia
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="Nokia">
+            </label>
+            <label>Xiaomi
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="Xiaomi">
+            </label>
+            <label>OPPO
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="OPPO">
+            </label>
+            <label>Xem tất cả
+                <input type="radio" style="display:none;" class="btn btn-default btn-sm"
+                    [(ngModel)]="categoryString" (ngModelChange)="searchCategory($event)" value="">
+            </label>
+        </div>
+    </div>
+</div>
+<ng-template [ngIf]="data.length > 3" [ngIfElse]="loading">
+    <div class="product-list" style="margin: 0 -6px" id="list-products">
+        <div class="row m-0 w-100">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 col-xs-6 px-2"
+                *ngFor="let item of sortedData; index as indexOfList">
+                <div class="product-box border d-block my-2 rounded-lg" style="border-radius: 1em!important;">
+                    <div class="d-flex justify-content-between position-absolute w-100 z-index-10">
+                        <div class="label-sale text-small">
+                            <span class="text-white bg-warning rounded-top d-flex align-items-center px-1 py-0"
+                                style="border-radius: 1em!important;">
+                                {{item.rate | number:'1.1-2'}}<mat-icon aria-hidden="false" color="warn" inline="true">
+                                    star</mat-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-thum w-auto overflow-hidden" style="border-radius: 1em!important;">
+                        <a routerLink="/detail/{{item.id}}">
+                            <img src="{{item.imgSource}}" class="product-image rounded-top" alt="ProductImage"
+                                onerror="this.onerror=null;this.src='https://i.imgur.com/QJzMcF1.png'">
+                        </a>
+                    </div>
+                    <div class="product-info p-2">
+                        <div class="product-name text-center mt-2">
+                            {{item.title}}
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="product-price p-0">
+                                <strong class="text-lg"> {{item.price | number:'1.0-2'}} ₫</strong>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-2">
+                            <button mat-raised-button color="warn" (click)="addtoCart(indexOfList)">
+                                <mat-icon aria-hidden="false">add_shopping_cart</mat-icon>
+                                Add to cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="loading-spinner">
+        <mat-spinner color="warn" diameter=50></mat-spinner>
+    </div>
+</ng-template>
