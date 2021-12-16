@@ -1,0 +1,15 @@
+<nav mat-tab-nav-bar mat-stretch-tabs class="mt-4" dynamicHeight [color]="'warn'">
+    <a mat-tab-link routerLink='./addproduct' (click)="activeLink = 'addproduct'" [active]="activeLink == 'addproduct'">
+        Add Product
+        <mat-icon class="ml-2">add_circle_outline</mat-icon>
+    </a>
+    <a mat-tab-link routerLink='./manageproduct' (click)="activeLink = 'manageproduct'" [active]="activeLink == 'manageproduct'">
+        Manage Product
+        <mat-icon class="ml-2">format_list_bulleted</mat-icon>
+    </a>
+    <a mat-tab-link routerLink='./editproduct' (click)="activeLink = 'editproduct'" [active]="activeLink == 'editproduct'">
+        Edit Product
+        <mat-icon class="ml-2">edit</mat-icon>
+    </a>
+</nav>
+<router-outlet></router-outlet>

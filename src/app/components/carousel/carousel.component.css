@@ -1,0 +1,12 @@
+.picsum-img-wrapper img{
+    width: 100%;
+    height: 300px;
+    border-radius: 1em;
+}
+
+
+.carousel-inner {
+    overflow: visible !important;
+}
+
+

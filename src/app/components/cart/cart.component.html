@@ -1,0 +1,39 @@
+<h2 class="text-center mt-4 mb-5 color-primary">My cart</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>#</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of list; index as cartIndex" class="text-center">
+                <td class="align-middle">{{cartIndex+1}}</td>
+                <td class="align-middle">
+                    <a routerLink="/detail/{{item.id}}">
+                        <img src="{{item.imgSource}}" style="height: 150px; width: auto" onerror="this.onerror=null;this.src='https://i.imgur.com/QJzMcF1.png'" />
+                    </a>
+                </td>
+                <td class="align-middle">{{item.quantity}}</td>
+                <td class="align-middle">{{item.price | number:'1.2-2'}} ₫</td>
+                <td class="align-middle"><b>{{item.subtotal | number:'1.0-2'}} ₫</b></td>
+                <td class="align-middle">
+                    <a class="btn btn-sm btn-danger" (click)="delete(cartIndex)">
+                        <mat-icon aria-hidden="false">delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr class="text-center" *ngIf="list.length <= 0">
+                <td colspan="6" class="align-center h4 pt-5">Cart is empty</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="d-flex justify-content-end h3 py-3 mr-5">
+    <span>Total: <strong class="cart-total text-danger">{{total | number:'1.0-2'}} ₫</strong></span>
+</div>

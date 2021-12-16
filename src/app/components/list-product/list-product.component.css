@@ -1,0 +1,118 @@
+.product-image {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    transition: transform .5s, filter 1.5s ease-in-out;
+    height: 200px;
+    width: auto;
+}
+
+.product-image:hover {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    transform: scale(1.07);
+    -webkit-transform: scale(1.07);
+    -moz-transform: scale(1.07);
+    -ms-transform: scale(1.07);
+    -o-transform: scale(1.07);
+}
+
+@media screen and (max-width: 576px) {
+    .product-image {
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-top: 10px;
+        height: 140px
+    }
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.product-name {
+    /* padding: 10px 0;
+    font-size: 16px;
+    height: 70px; */
+    font-size: 16px;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 60px;
+}
+.product-price {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1;
+    color:rgba(155, 0, 0, 0.739);
+}
+.product-box:hover {
+    transform: translateY(-3px);
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
+}
+.box-title .box-title__title {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 22px;
+    color: #444444;
+}
+.box-title {
+    padding: 0;
+    background: unset;
+}
+.box-title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 2em;
+}
+.box-related-tag .list-related-tag {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0 0 0;
+}
+.box-related-tag .list-related-tag label {
+    height: 34px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    float: left;
+    margin: 0 1rem 0 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 1rem;
+    background: #F3F4F6;
+    color: #444444;
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+

@@ -1,0 +1,71 @@
+<header class="header bg-light mb-3">
+    <div class="container">
+        <div class="header-container">
+            <a class="header-logo h2 m-0" href="/">HANDPHONE-STORE</a>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a routerLink="/" class="menu-link">Home</a>
+                </li>
+                <li class="menu-item">
+                    <a routerLink="/dashboard" class="menu-link">Dashboard</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#list-products" type="button" class="menu-link">Buys</a>
+                </li>
+                <li class="menu-item">
+                    <a href="/pricing" class="menu-link">Pricing</a>
+                </li>
+                <!-- <li class="menu-item">
+                    <a href="#footer-about" class="menu-link">About</a>
+                </li> -->
+            </ul>
+            <!-- <div class="menu-toggle">
+                <a routerLink="/cart" matTooltip="Cart" class="btn btn-outline-danger rounded-lg">
+                    <mat-icon aria-hidden="false" matBadge="{{numberofCartItem}}" matBadgeColor="accent">shopping_cart
+                    </mat-icon>
+                </a>
+            </div> -->
+            <div class="header-auth">
+                <!-- <li class="menu-item list-unstyled align-middle p-0 m-0">
+                    <mat-form-field appearance="outline" class="p-0 m-0">
+                        <mat-label>Search ...</mat-label>
+                        <input matInput placeholder="Ex: Pizza" [(ngModel)]="searchString">
+                        <button mat-button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button mat-button *ngIf="searchString" matSuffix mat-icon-button aria-label="Clear" (click)="searchString=''">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </li> -->
+                <a routerLink="/cart" matTooltip="Cart" class="btn btn-outline-danger rounded-lg">
+                    <mat-icon aria-hidden="true" matBadge="{{numberofCartItem}}" matBadgeColor="accent">shopping_cart
+                    </mat-icon>
+                </a>
+            </div>
+            <!-- <nav class="navbar navbar-expand" *ngIf="user">
+                <div class="navbar-nav">
+                    <a>{{user.firstName}}</a>
+                    <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+                    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+                </div>
+            </nav> -->
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"
+                *ngIf="user">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <!-- <span class="username">{{user.firstName}} {{user.lastName}}</span> -->
+                <hr width="80%" align="center" />
+                <button mat-menu-item class="nav-item nav-link" routerLink="/users" routerLinkActive="active">
+                    <mat-icon>info</mat-icon>
+                    <span>Users</span>
+                </button>
+                <button mat-menu-item class="nav-item nav-link" (click)="logout()">                    
+                    <mat-icon>logout</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,50 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    z-index: 999;
+    transition: all 0.2s ease-in-out;
+}
+
+.show-scrollTop {
+    opacity: 0.9;
+    transition: all 0.2s ease-in-out;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(-1px);
+        -webkit-transform: translateY(-1px);
+        -moz-transform: translateY(-1px);
+        -ms-transform: translateY(-1px);
+        -o-transform: translateY(-1px);
+    }
+    20% {
+        transform: translateY(1px);
+        -webkit-transform: translateY(1px);
+        -moz-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+        -o-transform: translateY(1px);
+    }
+    40% {
+        transform: translateY(-1px);
+        -webkit-transform: translateY(-1px);
+        -moz-transform: translateY(-1px);
+        -ms-transform: translateY(-1px);
+        -o-transform: translateY(-1px);
+    }
+    60%,
+    100% {
+        transform: translateY(1px);
+        -webkit-transform: translateY(1px);
+        -moz-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+        -o-transform: translateY(1px);
+    }
+}
+
+mat-icon {
+    animation: updown 1.5s linear infinite;
+    -webkit-animation: updown 1.5s linear infinite;
+}

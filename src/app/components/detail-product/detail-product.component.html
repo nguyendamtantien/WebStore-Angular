@@ -1,0 +1,36 @@
+<ng-template [ngIf]="product" [ngIfElse]="loading">
+    <div class="row product my-5">
+        <div class="col-md-6 col-xs-12 mb-4">
+            <img src="{{product.imgSource}}" onerror="this.onerror=null;this.src='https://i.imgur.com/QJzMcF1.png'" class="image-product" />
+        </div>
+        <div class="col-md-6 col-xs-12 px-4">
+            <div class="mb-3">
+                <span class="h2 text-dark">{{product.title}}</span>
+            </div>
+            <div>
+                <strong class="text-dark text-lg align-middle"> {{product.rate}}</strong>
+                <mat-icon aria-hidden="false" color="accent" class="mr-3">star</mat-icon> -
+                <span class="ml-3 align-middle text-small">{{product.updateAt | date}}</span>
+            </div>
+
+            <div class="form-inline my-3 mx-0 bg-light rounded-lg p-3">
+                <span class="text-danger h3 m-0 p-0"><strong>{{product.price | number:'1.0-2'}}₫</strong></span>
+            </div>
+            <div class="mb-5">
+                <mat-icon aria-hidden="false">navigate_next</mat-icon>
+                <span class="text-dark align-middle">{{product.description}}</span>
+            </div>
+            <div class="form-inline my-4 mx-0">
+                <button class="btn btn-danger min-width-200" (click)="addtoCart()">
+                    <mat-icon aria-hidden="false">add_shopping_cart</mat-icon> Add to cart
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="loading-spinner">
+        <mat-spinner color="warn" diameter=50></mat-spinner>
+    </div>
+</ng-template>
