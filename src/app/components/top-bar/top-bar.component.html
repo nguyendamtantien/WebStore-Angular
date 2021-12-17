@@ -38,7 +38,7 @@
                         </button>
                     </mat-form-field>
                 </li> -->
-                <a routerLink="/cart" matTooltip="Cart" class="btn btn-outline-danger rounded-lg">
+                <a routerLink="/cart" class="btn btn-outline-danger rounded-lg">
                     <mat-icon aria-hidden="true" matBadge="{{numberofCartItem}}" matBadgeColor="accent">shopping_cart
                     </mat-icon>
                 </a>
@@ -55,7 +55,7 @@
                 <mat-icon>account_circle</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <!-- <span class="username">{{user.firstName}} {{user.lastName}}</span> -->
+                <span class="username">{{user.firstName}} {{user.lastName}}</span>
                 <hr width="80%" align="center" />
                 <button mat-menu-item class="nav-item nav-link" routerLink="/users" routerLinkActive="active">
                     <mat-icon>info</mat-icon>
