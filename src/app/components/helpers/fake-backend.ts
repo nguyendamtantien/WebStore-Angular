@@ -7,9 +7,17 @@ import { delay, materialize, dematerialize } from 'rxjs/operators';
 const usersKey = 'registration-login-users';
 let users = JSON.parse(localStorage.getItem(usersKey)) || [];
 
+<<<<<<< HEAD
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+=======
+
+@Injectable()
+export class FakeBackendInterceptor implements HttpInterceptor {
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        localStorage.setItem(usersKey, JSON.stringify([{"firstName":"tiên","lastName":"nguyên","username":"tien","password":"123456","id":0}]));
+>>>>>>> b89cee15b95d39d83cb1291b4ec9f5e07b9ccd5a
         const { url, method, headers, body } = request;
 
         return handleRoute();
