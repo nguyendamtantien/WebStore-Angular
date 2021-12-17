@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class CartComponent implements OnInit {
     list: CartItem[] = [];
     total: number = 0;
+    router: any;
     constructor(
         private cartService: CartService,
         private titleService: Title
@@ -37,7 +38,7 @@ export class CartComponent implements OnInit {
                 if (willDelete.isConfirmed) {
                     this.list = this.cartService.deleteItemCart(index);
                     this.total = this.cartService.getTotal();
-                    window.location.reload();
+                    location.reload();
                 }
             });
     }

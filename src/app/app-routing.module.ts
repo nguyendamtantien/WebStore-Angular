@@ -19,6 +19,7 @@ const routes: Routes = [
     { path: 'cart', component: CartComponent },
     { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
     { path: 'account', loadChildren: accountModule },
+    
     {
         path: 'dashboard', component: DashboardComponent, children: [
             { path: '', redirectTo: 'addproduct', pathMatch: 'full' },
