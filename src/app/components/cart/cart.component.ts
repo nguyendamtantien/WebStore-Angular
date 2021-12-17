@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { CartService } from 'src/app/services/cart.service';
 import { CartItem } from 'src/app/models/cartitem';
 import Swal from 'sweetalert2';
+import { state } from '@angular/animations';
 
 @Component({
     selector: 'app-cart',
@@ -38,7 +39,7 @@ export class CartComponent implements OnInit {
                 if (willDelete.isConfirmed) {
                     this.list = this.cartService.deleteItemCart(index);
                     this.total = this.cartService.getTotal();
-                    location.reload();
+                    window.location.reload();
                 }
             });
     }
@@ -47,4 +48,5 @@ export class CartComponent implements OnInit {
         this.list.splice(index, 1);
         this.cartService.setListcart(this.list);
     }
+    
 }

@@ -19,6 +19,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 // Min-MaxValidators
 import { MaxValidatorDirective, MinValidatorDirective } from './custom-validator/min-max-directive.directive';
@@ -72,9 +73,9 @@ import { ErrorInterceptor } from './components/helpers/error.interceptor';
         MinMaxValidators,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    
         // provider used to create fake backend
-        fakeBackendProvider
+        fakeBackendProvider,
+        {provide: LocationStrategy, useClass: HashLocationStrategy}
         ],
     bootstrap: [AppComponent]
 })
